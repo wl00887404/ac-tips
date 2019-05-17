@@ -58,14 +58,15 @@ function login(account, password) {
 
 ```javascript
 function login(account, password) {
-  if (account !== "foo" || password !== "bar") { return; }
+  if (account !== "foo" || password !== "bar") return;
+  
   // do something
 }
 ```
 
 在看到第一行 return ，  
 暗示若不符合條件，以後的程式碼不會執行，  
-可讀性更高，更方便 debug，  
+可讀性更高，更方便 debug，
 
 另外以一個費氏數列為例，
 
@@ -82,5 +83,16 @@ function fib(x) {
 ```
 
 因為 return 後不會繼續執行，  
-else 的部份都可以省略不寫，  
+else 的部份都可以省略不寫。
+
+```javascript
+function fib(x) {
+  if (x === 0) return 0;
+
+  if (x === 1) return 1;
+
+  return fib(x - 1) + fib(x - 2);
+}
+```
+
 同理也可以應用在 break 上。
