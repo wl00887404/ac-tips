@@ -1,45 +1,58 @@
 # 錯誤處理
 
-## undefined
+## undefined, null
 
-JS 是弱型別語言，  
-也就是有時候會因為 undefined 而發生錯誤，
+> Uncaught TypeError: Cannot read property 'name' of undefined
+> Uncaught TypeError: Cannot read property 'name' of null
+
+以中文理解，即為某個變數是 undefined 或是 null ，  
+所以沒有辦法 (undefined | null).property ，
+像是以下程式碼：
 
 ```javascript
 const dog = {
-  name: "Lucky",
-  age: 5
+  name: 'Lucky',
+  age: 5,
 };
 
 console.log(
   dog.name, // Lucky
-  dog.friends, // undefined
-  dog.friends[0] // Uncaught TypeError: Cannot read property '0' of undefined
+  dog.friend, // undefined
+  dog.friend.name, // Uncaught TypeError: Cannot read property 'name' of undefined
 );
 ```
 
 發生錯誤的原因 dog.friends 為 undefined，  
 而 undefined 並沒有 0 這個屬性，
+可以利用 `undefined &&` 解決這個 bug ，  
+JS 會在回傳 undefined ，並停止執行 && 後的程式碼，
 
 ```javascript
 console.log(
   dog.name, // Lucky
-  dog.friends, // undefined
-  dog.friends && dog.friends[0] // undefined
+  dog.friend, // undefined
+  dog.friend && dog.friend.name, // undefined
 );
 ```
 
-利用 `undefined &&` ，  
-JS 會在回傳 undefined ，並停止執行 && 後的程式碼，  
-同理，也可以用來處來 `default value` ，
+同理，也可以用來 `||` 處理來 `default value` ，  
+`undefined || defaultValue` 是在 JS 中，  
+非常常見的處理 default value 的寫法，相當實用，
 
-``` javascript
+```javascript
 console.log(
   dog.name, // Lucky
-  dog.friends, // undefined
-  dog.friends && dog.friends[0] || "George" // George
-)
+  dog.friend, // undefined
+  (dog.friend && dog.friend.name) || 'George', // George
+);
 ```
 
-`undefined || defaultValue` 是在 JS 中，  
-非常常見的處理 default value 的寫法，相當實用。
+抑或是新語法 `?.` 與 `??` ，
+
+```javascript
+console.log(
+  dog.name, // Lucky
+  dog.friend, // undefined
+  dog.friend?.name ?? 'George', // George
+);
+```

@@ -4,8 +4,8 @@
 
 1. 猜中間那個
 2. 如果相等，那就找到了
-3. 如果太大，把此數設為上屆，重複 1
-4. 如果太小，把此數設為下屆，重複 1
+3. 如果太大，把此數設為上界，重複 1
+4. 如果太小，把此數設為下界，重複 1
 
 此刻有沒有覺得，這根本沒有在『猜』數字，是在找數字吧！  
 正式介紹 `Binary Search 二分搜尋` ，  
@@ -29,6 +29,13 @@ Binary Search 是在一個 `已排序` 的陣列做搜尋的最佳解，
 猜 1 ~ n ，最多要走 log<sub>2</sub> n 次，  
 電腦科學稱 Binary Search 的時間複雜度是 O(log n) ，
 
+每當 mid 並非目標的時候，將會更新上下界，  
+而更新上下屆是否 +1 ，取決於上下界是包含與不包含，  
+通常在會將 left 設計為包含，而 right 設計成不包含，  
+right 不包含的設計在搜尋 array 時很方便，  
+可以直接設定 left = 0; right = array.length ，  
+恰好符合 array 的每一個 index ，
+
 以下為範例程式碼：
 
 ```javascript
@@ -36,16 +43,9 @@ const answer = Math.floor(Math.random() * 100) + 1;
 
 let left = 1; // 包含
 let right = 101; // 不包含
-let mid;
 
 while (true) {
-  if (left >= right) {
-    // 左右界重疊，沒數字猜了
-    console.log(`正確答案是 ${answer} ，並不在範圍內 :(`);
-    break;
-  }
-
-  mid = Math.floor((left + right) / 2);
+  let mid = Math.floor((left + right) / 2);
 
   if (mid === answer) {
     console.log(`猜到了！答案就是 ${mid}`);
@@ -58,7 +58,37 @@ while (true) {
     right = mid;
   } else {
     console.log(`猜 ${mid} ，太小了！`);
-    // 下一次範圍為 mid + 1 （包含） ~ right （不包含
+    // 下一次範圍為 mid + 1 （包含） ~ right （不包含）
+    left = mid + 1;
+  }
+}
+```
+
+在已排序的陣列中做搜尋：
+
+```javascript
+const array = [1, 4, 7, 9, 13];
+const target = 9;
+
+let left = 0;
+let right = array.length;
+
+while (true) {
+  let mid = Math.floor((left + right) / 2);
+
+  if (left >= right) {
+    console.log(`array 中沒有 ${target}`);
+    break;
+  }
+
+  if (array[mid] === target) {
+    console.log(`找到了！ array[${mid}] 就是 ${target}`);
+    break;
+  }
+
+  if (array[mid] > target) {
+    right = mid;
+  } else {
     left = mid + 1;
   }
 }

@@ -1,0 +1,19 @@
+<svg version="1.1" baseProfile="full" width="700" height="210" viewbox="0,0,700,210" 
+  xmlns="http://www.w3.org/2000/svg">
+  <text x="203" y="22" fill="black" style="font-size:15px;font-family:微軟正黑體,sans-serif">3000 ms</text>
+  <text x="575" y="22" fill="black" style="font-size:15px;font-family:微軟正黑體,sans-serif">8000 ms</text>
+  <line x1="223" y1="30" x2="223" y2="210" stroke="rgb(233, 130, 27);" stroke-width="1" />
+  <line x1="595" y1="30" x2="595" y2="210" stroke="rgb(233, 130, 27);" stroke-width="1" />
+  <rect width="223" height="30" y="45" fill="rgb(239, 166, 92)"/>
+  <text x="10" y="65" fill="white" style="font-size:15px;font-family:微軟正黑體,sans-serif">Bark_Delay_3000</text>
+  <rect width="223" height="30" y="85" x="223" fill="rgb(239, 166, 92)"/>
+  <text x="233" y="105" fill="white" style="font-size:15px;fill:white;font-family:微軟正黑體,sans-serif">Bark_Delay_3000</text>
+  <rect width="372" height="30" y="125" x="223" fill="rgb(239, 166, 92)"/>
+  <text x="233" y="145" fill="white" style="font-size:15px;font-family:微軟正黑體,sans-serif">Bark_Delay_5000</text>
+  <rect width="105" height="30" y="165" fill="rgb(239, 166, 92)"/>
+  <text x="10" y="185" fill="white" style="font-size:15px;font-family:微軟正黑體,sans-serif">console.log</text>
+  <rect width="105" height="30" y="165" x="223" fill="rgb(239, 166, 92)"/>
+  <text x="233" y="185" fill="white" style="font-size:15px;font-family:微軟正黑體,sans-serif">console.log</text>
+  <rect width="105" height="30" y="165" x="595" fill="rgb(239, 166, 92)"/>
+  <text x="605" y="185" fill="white" style="font-size:15px;font-family:微軟正黑體,sans-serif">console.log</text>
+</svg>
