@@ -158,7 +158,7 @@ getUserProfile('account', 'password')
 
 ### 預期流程
 
-![不！圖片去哪了！](https://wl00887404.github.io/ac-tips/binary-search/promise/flow1.svg)
+![不！圖片去哪了！](https://wl00887404.github.io/ac-tips/promise/flow1.svg)
 
 ```js
 const barkDelay3000 = function () {
@@ -200,7 +200,7 @@ Promise.then 會接到所有 Promise 回傳的值，他也是一個 Array ，
 
 ### 預期流程
 
-![揮揮衣袖不帶走一張圖片](https://wl00887404.github.io/ac-tips/binary-search/promise/flow2.svg)
+![揮揮衣袖不帶走一張圖片](https://wl00887404.github.io/ac-tips/promise/flow2.svg)
 
 ```js
 barkDelay3000()
