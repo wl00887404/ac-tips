@@ -121,7 +121,7 @@ Promise 在建構的時候必須傳入一個 callback
 callback 會傳入兩個方法：
 
 - resolve  
-  完成時呼叫，當 resolve 被呼叫會執行 `Promise.then`  。
+  完成時呼叫，當 resolve 被呼叫會執行 `Promise.then` 。
 - reject
   出錯時呼叫，當 reject 被呼叫會執行 `Promise.catch` 。
 
@@ -139,6 +139,10 @@ function getUserProfile(account, password, callBack) {
       return fetchUserProfile(auth);
     })
     .then(function (rawData) {
+      /**
+       * 如果前一個 return 的是 Promise
+       * 那這個 .then 會等前面的 Promise 結束後才執行
+       */
       return parseUserProfile(rawData);
     });
 }
@@ -219,7 +223,7 @@ console.log('barkDelay3000 是異步的，所以我會是第一行');
 
 如果以 Promise 的寫法，  
 Promise 仍是不斷 then 下去，維護難度也跟著提高，  
-也因為如此在 Es7 加入了 `Async/Await` ，
+也因為如此在 Es7 加入了 `Async / Await` ，
 
 ```js
 async function barkAsyncAwait() {
