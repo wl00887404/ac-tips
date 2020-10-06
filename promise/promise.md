@@ -19,6 +19,12 @@ function bark() {
 
 bark();
 console.log('我會在汪汪後執行');
+
+/**
+ * 執行的結果：
+ *   汪汪
+ *   我會在汪汪後執行
+ */
 ```
 
 但如果 `bark` 是一個異步方法，情況就不同了，
@@ -34,6 +40,12 @@ const barkDelay = function () {
 
 barkDelay();
 console.log('我會在汪汪後執行');
+
+/**
+ * 執行的結果：
+ *   我會在汪汪後執行
+ *   汪汪
+ */
 ```
 
 為了讓程式碼能正確執行，  
@@ -51,6 +63,17 @@ const barkDelayCallback = callback => {
 barkDelayCallback(function () {
   console.log('我會在汪汪後執行');
 });
+
+/**
+ * 執行的結果：
+ *   汪汪
+ *   我會在汪汪後執行
+ */
+/**
+ * 執行的結果：
+ *   汪汪
+ *   我會在汪汪後執行
+ */
 ```
 
 如此程式碼就可以正常執行了，  
@@ -78,14 +101,13 @@ function getUserProfile(account, password, callBack) {
 }
 
 getUserProfile('account', 'password', function (error, profile) {
-  if (error) console.error(error);
+  if (error) return console.error(error);
 
   console.log('取得使用者資料成功');
 });
 ```
 
-是的，這個波動拳 (callback hell) 是相當難維護的，  
-Promise 為了解決如此窘境而誕生 ，
+是的，這個波動拳 (callback hell) 是相當難維護的， Promise 為了解決如此窘境而誕生。
 
 ## Promise 正式登場
 
@@ -105,6 +127,7 @@ barkDelayPromise()
   .then(function (value) {
     // value = "這個字串會傳進 then 裡面的 value"
     console.log('我會在汪汪後執行');
+    console.log(value);
     return '還可以繼續往下傳';
   })
   .then(function (value) {
@@ -115,6 +138,14 @@ barkDelayPromise()
   });
 
 console.log('Promise 是異步的，所以我是第一行');
+
+/**
+ * 執行的結果：
+ *   Promise 是異步的，所以我是第一行
+ *   我會在汪汪後執行
+ *   這個字串會傳進 then 裡面的 value
+ *   還可以繼續往下傳
+ */
 ```
 
 Promise 在建構的時候必須傳入一個 callback
@@ -158,7 +189,7 @@ getUserProfile('account', 'password')
 
 ## 等待多個 Promise
 
-你可以使用 `Promise.all` 來等待多個 Promise 完成，
+你可以使用 `Promise.all` 來等待多個 Promise 完成。
 
 ### 預期流程
 
@@ -192,13 +223,23 @@ Promise.all(promises).then(function (values) {
 });
 
 console.log('前面都是異步，所以我會是第一行');
+
+/**
+ * 執行的結果：
+ *   前面都是異步，所以我會是第一行
+ *   汪汪
+ *   汪汪
+ *   --Promise.all--
+ *   barkDelay3000: 下午6:29:54
+ *   barkDelay5000: 下午6:29:56
+ */
 ```
 
 `Promise.all` 傳入一個 Promise Array，並回傳一個 Promise ，  
 當 Array 裡的 Promise 全部完成的時候，執行 Promise.then ，  
 Promise.then 會接到所有 Promise 回傳的值，他也是一個 Array ，
 
-這麼一來就可以等待多個 Promise ，可以執行複雜的異步的任務，
+這麼一來就可以等待多個 Promise ，可以執行複雜的異步的任務。
 
 ## Async/Await
 
@@ -219,6 +260,18 @@ barkDelay3000()
     console.log('barkDelay5000:\t' + values[1]);
   });
 console.log('barkDelay3000 是異步的，所以我會是第一行');
+
+/**
+ * 執行的結果：
+ *   barkDelay3000 是異步的，所以我會是第一行
+ *   汪汪
+ *   barkDelay3000: 下午6:29:54
+ *   汪汪
+ *   汪汪
+ *   --Promise.all--
+ *   barkDelay3000: 下午6:29:57
+ *   barkDelay5000: 下午6:29:59
+ */
 ```
 
 如果以 Promise 的寫法，  
@@ -241,6 +294,17 @@ async function barkAsyncAwait() {
 barkAsyncAwait();
 
 console.log('Bark_Async_Await 是異步的，所以我會是第一行');
+/**
+ * 執行的結果：
+ *   barkDelay3000 是異步的，所以我會是第一行
+ *   汪汪
+ *   barkDelay3000: 下午6:29:54
+ *   汪汪
+ *   汪汪
+ *   --Promise.all--
+ *   barkDelay3000: 下午6:29:57
+ *   barkDelay5000: 下午6:29:59
+ */
 ```
 
 這兩段程式碼是等價的，  
