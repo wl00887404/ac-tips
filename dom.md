@@ -11,7 +11,7 @@
 - comment node  
   &lt;!--comment--&gt; ，註解標籤。
 
-## NodeList vs HTMLCollection
+<!-- ## NodeList vs HTMLCollection
 
 - HTMLCollection
   只有 element node 。
@@ -28,7 +28,7 @@ CSS Selector 並沒有能夠抓 text node 的 selector ，
 可以把 NodeList 當成是 HTMLCollection 的宇集，  
 另外 NodeList 是固定的，只要一 query 出來就不會變了，  
 而 HTMLCollection 是動態的，內容更新也跟著更新，可以參考 [這裡](https://codepen.io/wl00887404/pen/ZEbjXNr?editors=1010) 。
-
+ -->
 ## innerHTML vs innerText vs textContent
 
 ### textContent
