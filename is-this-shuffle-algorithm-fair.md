@@ -161,9 +161,9 @@ randomIndex 與 index 是有可能出現一樣的數字的：
 
 ```javascript
 // $_ 表示前一次的執行結果
-Math.random();    // 0 <= result  < 1
-$_ * (index + 1); // 0 <= result < (index + 1)
-Math.floor($_);   // 0 <= result < (index + 1)
+Math.random()     // 0 <= result < 1
+$_ * (index + 1)  // 0 <= result < (index + 1)
+Math.floor($_)    // 0 <= result < (index + 1)
                   // 等同於 0 <= result <= index
 ```
 
