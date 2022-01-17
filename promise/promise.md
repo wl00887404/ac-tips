@@ -27,7 +27,9 @@ console.log('我會在汪汪後執行');
  */
 ```
 
-但如果 `bark` 是一個異步方法，情況就不同了，
+但如果 `bark` 是一個異步方法，情況就不同了，  
+異步方法會因為 JavaScript Event Loop 的機制，導致執行結果不符合預期，  
+如果你不熟悉 Event Loop ，可以先參考 [理解 JavaScript 中的事件循環](https://pjchender.blogspot.com/2017/08/javascript-learn-event-loop-stack-queue.html) 。
 
 ```js
 // bark 還是上面那個喔
@@ -131,6 +133,7 @@ barkDelayPromise()
     return '還可以繼續往下傳';
   })
   .then(function (value) {
+    // value = "還可以繼續往下傳"
     console.log(value);
   })
   .catch(function (error) {
